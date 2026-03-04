@@ -1,7 +1,10 @@
 // api.js - Full API service with JWT support
 const BASE_URL =
   import.meta.env.VITE_BASE_URL ?? "http://localhost:8080/api";
-console.log("API BASE:", BASE_URL);
+
+  console.log("API BASE URL:", import.meta.env.VITE_BASE_URL);
+  console.log("FINAL BASE URL:", BASE_URL);
+
 class ApiService {
   // Helper method for making HTTP requests
   async request(endpoint, options = {}) {
