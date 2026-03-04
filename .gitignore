@@ -1,0 +1,36 @@
+# Node
+node_modules/
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Environment files
+.env
+.env.*.local
+
+# VS Code
+.vscode/
+.history/
+
+# IntelliJ / JetBrains IDEs
+.idea/
+*.iml
+out/
+*.ipr
+*.iws
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Mac / Linux / Windows system files
+.DS_Store
+Thumbs.db
+*.swp
