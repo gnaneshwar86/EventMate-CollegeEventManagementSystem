@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@layer base {
+  @reference theme; /* <-- important for Tailwind v4 */
+
+  body {
+    @apply m-0 bg-[#FAF9EE] font-sans antialiased;
+  }
+
+  code {
+    @apply font-mono;
+  }
+}
