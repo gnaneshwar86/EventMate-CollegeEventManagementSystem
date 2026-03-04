@@ -41,29 +41,20 @@ The system is built with **React + Spring Boot**, providing a scalable architect
 
 ---
 
-# 📸 Screenshots
+## 📸 Screenshots
 
 ### Student Event Dashboard
-
-```
-/screenshots/student-dashboard.png
-```
+![Student Dashboard](screenshots/student-dashboard.png)
 
 ---
 
 ### Event Registration Page
-
-```
-/screenshots/event-registration.png
-```
+![Event Registration](screenshots/event-registration.png)
 
 ---
 
 ### Admin Analytics Dashboard
-
-```
-/screenshots/admin-dashboard.png
-```
+![Admin Dashboard](screenshots/admin-dashboard.png)
 
 ---
 
