@@ -28,6 +28,7 @@ const RegistrationPage = () => {
   });
   const [registering, setRegistering] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
   const { showNotification } = useNotification();
 
 
