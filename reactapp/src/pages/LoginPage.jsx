@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Eye, EyeOff, User, Lock, Mail, Shield } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import AdminDashboard from './AdminDashboard';
+import apiService from '../services/api';
 
 const AdminAuth = ({ onAuthSuccess }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -28,35 +29,25 @@ const AdminAuth = ({ onAuthSuccess }) => {
     }
 
     try {
-      const endpoint = isLogin ? '/api/admin/login' : '/api/admin/register';
-      const payload = isLogin 
-        ? { username: formData.username, password: formData.password }
-        : { username: formData.username, email: formData.email, password: formData.password };
+      if (isLogin) {
+        const credentials = { username: formData.username, password: formData.password };
+        const data = await apiService.adminLogin(credentials);
 
-      const response = await fetch(`http://localhost:8080${endpoint}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        if (isLogin) {
-          console.log("JWT Token:", data.token);
-          localStorage.setItem('adminToken', data.token);
-          localStorage.setItem('adminUser', JSON.stringify(data.admin));
-          onAuthSuccess(data.token, data.admin);
-          navigate('/admindashboard');
-        } else {
-          setMessage('Registration successful! Please login.');
-          setIsLogin(true);
-        }
+        console.log("JWT Token:", data.token);
+        onAuthSuccess(data.token, data.admin);
+        navigate('/admindashboard');
       } else {
-        setMessage(data.message || 'Authentication failed');
+        const payload = {
+          username: formData.username,
+          email: formData.email,
+          password: formData.password
+        };
+        await apiService.adminRegister(payload);
+        setMessage('Registration successful! Please login.');
+        setIsLogin(true);
       }
     } catch (error) {
-      setMessage('Network error. Please try again.');
+      setMessage(error.message || 'Authentication failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -77,11 +68,11 @@ const AdminAuth = ({ onAuthSuccess }) => {
             <label>Username</label>
             <div className="relative">
               <User className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
-              <input 
-                type="text" name="username" value={formData.username} 
-                onChange={handleInputChange} 
-                className="w-full pl-10 py-3 border rounded-lg" 
-                required 
+              <input
+                type="text" name="username" value={formData.username}
+                onChange={handleInputChange}
+                className="w-full pl-10 py-3 border rounded-lg"
+                required
               />
             </div>
           </div>
@@ -102,7 +93,7 @@ const AdminAuth = ({ onAuthSuccess }) => {
               <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
               <input type={showPassword ? 'text' : 'password'} name="password" value={formData.password} onChange={handleInputChange} className="w-full pl-10 py-3 border rounded-lg" required />
               <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-3 text-gray-400">
-                {showPassword ? <EyeOff className="w-5 h-5"/> : <Eye className="w-5 h-5"/>}
+                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
             </div>
           </div>

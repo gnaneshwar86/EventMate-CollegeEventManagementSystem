@@ -2,8 +2,8 @@
 const BASE_URL =
   import.meta.env.VITE_BASE_URL ?? "http://localhost:8080/api";
 
-  console.log("API BASE URL:", import.meta.env.VITE_BASE_URL);
-  console.log("FINAL BASE URL:", BASE_URL);
+console.log("API BASE URL:", import.meta.env.VITE_BASE_URL);
+console.log("FINAL BASE URL:", BASE_URL);
 
 class ApiService {
   // Helper method for making HTTP requests
@@ -172,8 +172,31 @@ class ApiService {
     return data;
   }
 
+  async adminLogin(credentials) {
+    const data = await this.request('/admin/login', {
+      method: 'POST',
+      body: credentials,
+    });
+
+    if (data.token) {
+      localStorage.setItem('adminToken', data.token);
+      localStorage.setItem('adminUser', JSON.stringify(data.admin));
+    }
+
+    return data;
+  }
+
+  async adminRegister(payload) {
+    return this.request('/admin/register', {
+      method: 'POST',
+      body: payload,
+    });
+  }
+
   async logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('adminToken');
+    localStorage.removeItem('adminUser');
   }
 
   async getCurrentUser() {
