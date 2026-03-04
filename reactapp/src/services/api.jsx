@@ -9,6 +9,7 @@ class ApiService {
   // Helper method for making HTTP requests
   async request(endpoint, options = {}) {
     const url = `${BASE_URL}${endpoint}`;
+    console.log(`[ApiService] Request to: ${url}`, options);
 
     // Get JWT token from localStorage
     const token = localStorage.getItem('token');
