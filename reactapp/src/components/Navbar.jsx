@@ -27,11 +27,13 @@ function Navbar() {
     <nav className="fixed top-0 left-0 w-full h-[15vh] z-50 text-white shadow-lg"
       style={{ background: 'linear-gradient(90deg, #00809D, #006B7A)' }}>
       <div className="h-full flex items-center justify-between px-6">
-        <div className="flex items-center space-x-4">
-          <div className="p-2 rounded-lg bg-[#FFD700]">
-            <Calendar className="w-6 h-6" style={{ color: '#00809D' }} />
-          </div>
-          <h1 className="text-2xl font-bold">EventMate</h1>
+        <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
+          <img 
+            src="/EventMate_Logo.png" 
+            alt="EventMate Logo" 
+            className="h-16 w-auto object-contain hover:scale-105 transition-transform" 
+          />
+          <h1 className="text-2xl font-bold tracking-tight">EventMate</h1>
         </div>
 
         <div className="flex items-center space-x-4">

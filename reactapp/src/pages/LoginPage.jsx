@@ -57,8 +57,12 @@ const AdminAuth = ({ onAuthSuccess }) => {
     <div className=" flex items-center justify-center p-15">
       <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 bg-[#00809D]">
-            <Shield className="w-8 h-8 text-white" />
+          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full mb-4 bg-white shadow-inner overflow-hidden border-2 border-[#00809D]">
+            <img 
+              src="/EventMate_Logo.png" 
+              alt="EventMate Logo" 
+              className="w-20 h-20 object-contain" 
+            />
           </div>
           <h2 className="text-3xl font-bold">{isLogin ? 'Admin Login' : 'Register'}</h2>
         </div>

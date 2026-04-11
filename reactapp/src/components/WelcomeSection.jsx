@@ -29,7 +29,11 @@ function WelcomeSection() {
           </button>
         </div>
         <div className="hidden md:flex items-center relative z-10">
-          <Calendar className="w-20 h-20 opacity-80" />
+          <img 
+            src="/EventMate_Logo.png" 
+            alt="EventMate Logo" 
+            className="w-32 h-32 object-contain drop-shadow-2xl animate-pulse-slow" 
+          />
         </div>
         {/* Decorative Circles */}
         <div className="absolute top-[-20px] right-[-20px] w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
